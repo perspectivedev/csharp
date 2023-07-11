@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model Survey
+    <div class="container">
+        <div>
+            <p>Your Name: @Model.Name</p>
+            <p>Dojo Location: @Model.Location</p>
+            <p>Favorite Language: @Model.Language</p>
+            <p>Comment (Optional):</p>
+            @if(Model.Comment == null)
+            {
+                <p class="text-gray">No Comment</p>
+            } else {
+                <p>@Model.Comment</p>
+            }
+        </div>
+        <button class="btn btn-primary"><a href="/"><span class="text-white">Go Back</span></a></button>
+    </div>

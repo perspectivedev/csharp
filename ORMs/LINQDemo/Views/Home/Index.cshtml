@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Check Out these Games!</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Rating</th>
+            <th>Genre</th>
+            <th>Platform</th>
+        </tr>
+        @foreach(Game g in ViewBag.AllGames)
+        {
+            <tr>
+                <td>@g.Title</td>
+                <td>$@g.Price</td>
+                <td>@g.Rating</td>
+                <td>@g.Genre</td>
+                <td>@g.Platform</td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,29 @@
+using Microsoft.EntityFrameworkCore;
+using EFLectures.Models;
+var builder = WebApplication.CreateBuilder(args);
+
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession();
+
+// Creating the app
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+}
+// Use methods for the app
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+app.UseSession();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

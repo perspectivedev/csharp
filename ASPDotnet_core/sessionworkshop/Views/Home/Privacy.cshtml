@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+<div class="d-flex justify-content-between border-bottom border-secondary">
+<h1>Wecome @Context.Session.GetString("Name")!</h1>
+<form action="logout" method="post">
+<button class="btn btn-danger">Log Out</button>
+</form>
+</div>
+
+<div class="container d-flex flex-column text-center gap-2">
+    <h3>@Context.Session.GetInt32("UserNum")</h3>
+    <div class="container d-flex justify-content-center gap-2">
+        <form action="add" method="post">
+            <input hidden name="UserNum" value="add" type="text" />
+            <button type="submit" class="btn btn-warning">+1</button>
+        </form>
+        <form action="minus" method="post">
+            <input hidden name="UserNum" value="minus" type="text" />
+            <button type="submit" class="btn btn-primary">-1</button>
+        </form>
+    </div>
+    <div class="container d-flex justify-content-center gap-2">
+        <form action="times" method="post">
+            <input hidden name="UserNum" value="times" type="text" />
+            <button type="submit" class="btn btn-danger">x2</button>
+        </form>
+        <form action="rndNum" method="post">
+            <input hidden name="UserNum" value="rndNum" type="text" />
+            <button type="submit" class="btn btn-success">+ Random</button>
+        </form>
+    </div>
+</div>
+</div>
