@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Edit Page";
+}
+
+@model Dish 
+
+    <div class="text-center">
+        <h1>@Model.Name</h1>
+        <p><a href="/">Home</a> | <a href="dishes/new">Add a Dish</a></p>
+    </div>
+
+    <form asp-action="UpdateOne" asp-controller="Home" asp-route-dishId="@Model.DishId" method="post" class="d-flex justify-content-center gap-4">
+    <div class="d-flex flex-column gap-4">
+        <div class="d-flex flex-column gap-4">
+            <label for="Chef" class="form-control">Chef's Name</label>
+            <input asp-for="Chef" />
+            <span asp-validation-for="Chef" class="text-danger font-weight-bold"></span> 
+        </div>
+        <div class="d-flex flex-column gap-4">
+            <label for="Name" class="form-control">Name of Dish</label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="d-flex flex-column gap-4">
+            <label for="Calories" class="form-control"># of Calories</label>
+            <input asp-for="Calories" />
+            <span asp-validation-for="Calories" class="text-danger font-weight-bold"></span>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column gap-4">
+        <label asp-for="Tastiness" class="form-control"></label>
+        <select asp-for="Tastiness">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <span asp-validation-for="Tastiness" class="text-danger font-weight-bold"></span>
+    </div>
+
+    <div class="d-flex flex-column gap-4 h-50%">
+        <label for="Description" class="form-control">Description</label>
+        <textarea asp-for="Description" rows="5" cols="30"></textarea>
+        <span asp-validation-for="Description" class="text-danger font-weight-bold"></span>
+        <button type="Submit" class="btn btn-warning">Edit Dish</button>
+    </div>
+</form>
