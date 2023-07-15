@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@model User
+
+<div class="text-center">
+    <h1 class="text-success">Success!!!</h1>
+    <h2>Welcome @Model.FirstName!</h2>
+    <a asp-action="Logout" asp-controller="Home" class="btn btn-danger">Logout</a>
+</div>

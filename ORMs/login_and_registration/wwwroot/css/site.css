@@ -1,0 +1,22 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+form.box-shadow {
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  margin-bottom: 60px;
+}
