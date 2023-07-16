@@ -2,9 +2,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using chefndishes.Models;
 
-namespace chefndishes.Controllers;
+namespace chefndishes.Models;
 
 public class DishesController : Controller
 {
@@ -18,14 +17,32 @@ public class DishesController : Controller
         _db = context;
     }
 
+    [HttpGet("/dishes")]
     public IActionResult Dishes()
     {
+        List<Dish> AllDishes = _db.Dishes.Include(dish => dish.Creator).ToList();
+        return View("Dishes", AllDishes);
+    }
+
+    [HttpGet("/dishes/new")]
+    public IActionResult NewDish()
+    {
+        ViewBag.allChefs = _db.Chefs.ToList();
         return View();
     }
 
-    public IActionResult NewDish()
+    [HttpPost("/dishes/create")]
+    public IActionResult CreateDish(Dish newDish)
     {
-        return View();
+        if(!ModelState.IsValid)
+        {
+            ViewBag.allChefs = _db.Chefs.ToList();
+            return View("NewDish");
+        } else {
+            _db.Dishes.Add(newDish);
+            _db.SaveChanges();
+            return RedirectToAction("Dishes");
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

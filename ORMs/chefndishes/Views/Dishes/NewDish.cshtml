@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "New Dish Page";
+}
+@model Dish
+<div class="text-center">
+    <div class="row">
+            <p class="d-flex justify-content-around mb-4">
+                    <a href="/">Chefs</a> | 
+                    <a href="/dishes">Dishes</a> | 
+                    <a href="/chefs/new">Add a Chef</a> | 
+                    <span class="Text-muted">Add a Dish</span>
+                </p>
+        </div>
+        <h1 class="Text-center">Add a Dish</h1>
+</div>
+<hr/>
+@await Html.PartialAsync("_DishForm")

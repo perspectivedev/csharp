@@ -1,6 +1,42 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Chefs Page";
 }
-<h1>@ViewData["Title"]</h1>
-
-<p>Use this page to detail your site's privacy policy.</p>
+@model List<Chef>
+<div class="text-center">
+    <div class="row">
+        <p class="d-flex justify-content-around mb-4">
+            <span class="text-muted">Chefs</span> | 
+            <a href="/dishes">Dishes</a> | 
+            <a href="/chefs/new">Add a Chef</a> | 
+            <a href="/dishes/new">Add a Dish</a> 
+        </p>
+    </div>
+    <h1 class="Text-center">Check out our roster of chefs!</h1>
+</div>
+    <hr/>
+<table class="table table-striped gap-1 text-center">
+    <thead class="bg-black text-white">
+        <tr class="">
+            <th>Name</th>
+            <th>Age</th>
+            <th># of Dishes</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach(Chef chef in Model)
+            {
+        <tr>
+            <td>@chef.FirstName  @chef.LastName</td>
+            <td>
+                @{
+                            DateTime Val = (DateTime)chef.Dob;
+                            int age = 0;
+                            age = DateTime.Now.AddYears(-Val.Year).Year;
+                        }
+                        @age
+            </td>
+            <td>@chef.AllDishes.Count</td>
+        </tr>
+            }
+    </tbody>
+</table>

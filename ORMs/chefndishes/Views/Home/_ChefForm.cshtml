@@ -1,0 +1,22 @@
+@model Chef
+
+<form asp-action="CreateChef" method="post"asp-controller="Home" class="card bg-secondary text-dark d-flex flex-column p-4 mt-5">
+    <div class="d-flex justify-content-between mb-3">        
+        <label asp-for="FirstName" class="form-label align-content-end  align-self-center w-25"></label>        
+        <input asp-for="FirstName" class="form-control justify-content-start align-self-center bg-light">        
+        <span asp-validation-for="FirstName" class="text-danger"></span>    
+    </div>
+    <div class="d-flex justify-content-between mb-3">        
+        <label asp-for="LastName" class="form-label align-content-end  align-self-center w-25"></label>        
+        <input asp-for="LastName" class="form-control justify-content-start align-self-center bg-light">        
+        <span asp-validation-for="LastName" class="text-danger"></span>    
+    </div>
+    <div class="d-flex flex-row mb-3">
+        <label asp-for="Dob" class="form-label align-content-end  align-self-center w-25"></label>
+        <input asp-for="Dob" type="date" class="form-control justify-content-start align-self-center bg-light">        
+        <span asp-validation-for="Dob" class="text-danger font-weight-bold flex-fill"></span>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success">Add User</button>
+    </div>
+</form>
