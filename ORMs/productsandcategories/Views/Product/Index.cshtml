@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Products Page";
+}
+
+<h1 class="text-center"><span class="text-muted">Product</span> | <a href="/categories">Category</a></h1>
+<div class="row align-items-center gap-2">
+    <div class="col d-flex flex-column">
+        <h1 class="text-center">New Product</h1>
+        @await Html.PartialAsync("_ProductForm")
+    </div>
+    <div class="col">
+        <h1 class="text-center">All Products</h1>
+        <div class="d-flex flex-column p-4 card">
+        @foreach(Product prods in ViewBag.allProds )
+        {
+            <p><a  asp-action="OneProduct" asp-controller="Product" asp-route-productId="@prods.ProductId"> @prods.Name</a></p>
+        }
+        </div>
+    </div>
+</div>

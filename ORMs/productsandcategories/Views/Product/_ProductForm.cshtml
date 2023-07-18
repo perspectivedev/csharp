@@ -1,0 +1,23 @@
+@model Product
+
+        <form asp-action="CreateProduct" asp-controller="Product" method="post" class="card card-border-2 d-flex flex-column p-4">
+            <div class="d-flex">
+                <label asp-for="Name" class="form-label align-content-end  align-self-center w-25 p-2"></label>
+                <input asp-for="Name" class="form-control justify-content-start align-self-center bg-light" />
+                <span asp-validation-for="Name" class="text-danger font-weight-bold flex-fill"></span>
+            </div>
+            
+            <div class="d-flex">
+                <label for="Description" class="form-label align-content-end  align-self-center w-25 p-2">Description</label>
+                <textarea asp-for="Description" rows="1" cols="30"  class="form-control justify-content-start align-self-center bg-light"></textarea>
+                <span asp-validation-for="Description" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="d-flex">
+                <label asp-for="Price" class="form-label align-content-end  align-self-center w-25 p-2"></label>
+                <input asp-for="Price" class="form-control justify-content-start align-self-center bg-light" />
+                <span asp-validation-for="Price" class="text-danger font-weight-bold flex-fill"></span>
+            </div>
+            <div>
+                <button type="Submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>

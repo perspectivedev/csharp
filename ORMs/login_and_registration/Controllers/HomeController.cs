@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CS8618
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-// Add this using statement to be able to use PasswordHasher
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Filters;
 

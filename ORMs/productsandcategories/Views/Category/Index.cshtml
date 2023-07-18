@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Category Page";
+}
+
+<h1 class="text-center"><a href="/">Product</a> | <span class="text-muted">Category</span></h1>
+<div class="row align-items-center gap-2">
+    <div class="col d-flex flex-column">
+        <h1 class="text-center">New Category</h1>
+        @await Html.PartialAsync("_CategoryForm")
+    </div>
+    <div class="col">
+        <h1 class="text-center">All Categories</h1>
+        <div class="d-flex flex-column p-4 card">
+        @foreach(Category cats in ViewBag.allCats )
+        {
+            <p><a  asp-action="OneCategory" asp-controller="Category" asp-route-categoryId="@cats.CategoryId">@cats.Name</a></p>
+        }
+        </div>
+    </div>
+</div>

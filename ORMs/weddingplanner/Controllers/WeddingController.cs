@@ -1,14 +1,15 @@
-﻿using System.Diagnostics;
+#pragma warning disable CS8618
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using productsandcategories.Models;
+using weddingplanner.Models;
 
-namespace productsandcategories.Controllers;
+namespace weddingplanner.Controllers;
 
-public class HomeController : Controller
+public class WeddingController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<WeddingController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public WeddingController(ILogger<WeddingController> logger)
     {
         _logger = logger;
     }

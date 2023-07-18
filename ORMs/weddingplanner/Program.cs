@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using productsandcategories.Models;
+using weddingplanner.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +32,6 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Product}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"]= "Products Add Category Page";
+}
+
+@model Product
+<h1 class="text-center"><a href="/">Product</a> | <a href="/categories">Category</a></h1>
+<h3 class="text-center">@Model.Name</h3>
+<div class="row align-items-center gap-2">
+    <div class="col d-flex flex-column">
+        <div class="d-flex flex-column p-4 card text-center">
+            <h1 asp.for="@Model.ProductId"class="text-center"></h1>
+                <h3>Categories</h3>
+            @foreach(Association c in Model.Associations )
+            {
+                <p> @c.Category.Name</p>
+            }
+        </div>
+    </div>
+    <div class="col">
+        <h3 class="text-center">Add Category</h3>
+        <form asp-action="AddCategory" asp-controller="Product" asp-route-productId="@Model.ProductId" method="post">
+                <div class="d-flex flex-column gap-4 mb-4">
+                        <label for="CategoryId" class="form-label "></label>
+                        <select name="categoryId" value="CategoryId">
+                            <option hidden>Please Select a Category</option>
+                            @foreach(Category c in ViewBag.unassociatedCats)
+                            {
+                                <option value="@c.CategoryId">@c.Name</option>
+                            }
+                        </select>
+                </div>
+                <div class="d-flex flex-row-reverse">
+                    <button type="Submit" class="btn btn-success">Add</button>
+                </div>
+        </form>
+    </div>
+    
+</div>
