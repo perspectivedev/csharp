@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Account Info Page";
+}
+@model List<Coupon>
+<div class="d-flex justify-content-between p-2 my-2">
+    <p>Coupon Clipper</p>
+    <div class="d-flex justify-content-between w-25">
+        <a asp-action="Index" asp-asp-controller="Coupon" class="">Add Coupon</a> |
+        @await Html.PartialAsync("_UserLink") |
+                <form asp-action="Logout" asp-controller="User" method="post" class="text-danger">
+            <button type="submit" class="btn btn-outline-danger">Logout</button>
+        </form>
+    </div>
+</div>
+<hr/>
+<h1>Account Information</h1>
+<p>UserName:  @Context.Session.GetString("UserName")</p>
+<p>Email:  @Context.Session.GetString("Email")</p>
+@foreach (Coupon c in Model)
+{
+    <p>Coupons posted: @c.CouponTracker.Count</p>
+}
+<p># of coupons used: </p>

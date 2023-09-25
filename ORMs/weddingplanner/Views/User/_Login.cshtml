@@ -1,0 +1,17 @@
+@model LoginUser
+<div class="text-center">
+    <h1 class="display-4">Login</h1>
+</div>
+<form asp-action="Login" asp-controller="User" method="post" asp-route-weddings="weddings" class="card d-flex p-4 box-shadow">
+    <div class="mb-3">        
+        <label asp-for="EmailLogin"></label>        
+        <input asp-for="EmailLogin" class="form-control">        
+        <span asp-validation-for="EmailLogin" class="text-danger"></span>    
+    </div>
+    <div class="mb-3">        
+        <label asp-for="PasswordLogin"></label>        
+        <input asp-for="PasswordLogin" class="form-control">        
+        <span asp-validation-for="PasswordLogin" class="text-danger"></span>    
+    </div>
+    <button type="submit" class="btn btn-success">Add User</button>
+</form>

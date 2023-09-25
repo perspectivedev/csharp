@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using weddingplanner.Models;
+using couponclipper_belt_exam_1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@model List<Wedding>
+
+<div class="d-flex justify-content-between p-2 my-2">
+    <h2>Welcome @Context.Session.GetString("UserName")!</h2>
+    <div class="d-flex justify-content-between w-25">
+        <span class="text-muted">Home</span> |
+        <a asp-action="NewWedding" asp-controller="Wedding" class="text-decoration-none">Plan a Wedding</a> |
+        <form asp-action="Logout" asp-controller="User" method="post" class="text-danger text-decoration-none">
+            <button type="submit" class="btn btn-outline-danger">Logout</button>
+        </form>
+    </div>
+</div>
+<hr />
+<table class="table table-striped border mt-4 gap-1 text-center">
+    <thead class="bg-black text-white">
+        <tr class="">
+            <th>Wedding of</th>
+            <th>Date</th>
+            <th>Guest Count</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach(Wedding w in Model)
+            {
+        <tr>
+            <td><a asp-action="OneWedding" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId" class="text-decoration-none">@w.WeddingOne &  @w.WeddingTwo</a></td>
+            <td>@w.Date.ToString("dd MMMM yyyy, dddd")</td>
+            <td>@w.Guests.Count</td>
+            <td>@{
+                    int? userInDb = Context.Session.GetInt32("loggedUserId");
+                    bool rsvp = w.Guests.Any(g => g.UserId == userInDb);
+                    if(w.UserId  == userInDb)
+                    {
+                        <form asp-action="DeleteWedding" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId" method="post" class="">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    } 
+                    else 
+                    {
+                        <form asp-action="WedRsvps" asp-controller="Wedding" asp-route-weddingId="@w.WeddingId" method="post" class="">
+                                @if (rsvp)
+                                {
+                                    <button class="btn btn-danger btn-sm">Un-Rsvp</button>
+                                }
+                                    else 
+                                    {
+                                        <button class="btn btn-primary btn-sm">Rsvp</button>
+                                    }
+                        </form>
+                    }
+                }</td>
+        </tr>
+            }
+    </tbody>
+</table>

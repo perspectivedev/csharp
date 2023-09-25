@@ -1,0 +1,29 @@
+@model List<Wedding>
+<table class="table table-striped gap-1 text-center">
+    <thead class="bg-black text-white">
+        <tr class="">
+            <th>Wedding of</th>
+            <th>Date</th>
+            <th>Guest Count</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach(Wedding w in Model)
+            {
+        <tr>
+            <td>@w.WeddingOne  @w.WeddingTwo</td>
+            <td>
+                @{
+                            DateTime Curr = (DateTime)w.Date;
+                            int Date = 0;
+                            Date= DateTime.Now.AddYears(- Curr.Year).Year;
+                        }
+                        @Date
+            </td>
+            <td>@w.Guests.Count</td>
+            <td>Action</td>
+        </tr>
+            }
+    </tbody>
+</table>

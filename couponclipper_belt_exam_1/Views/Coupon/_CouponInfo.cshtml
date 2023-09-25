@@ -1,0 +1,12 @@
+@model Coupon
+    @foreach (CouponAssociation c in Model.CouponTracker)
+    {
+        <div class="card d-flex flex-column align-items-center p-2">
+            <h3 class="text-center">@Model.CouponCode</h3>
+            <p class="">Use on: @Model.Website</p>
+            <p>@Model.Description</p>
+            <p>people have used this</p>
+            <p><a asp-action="OneUser" asp-controller="Coupon" asp-route-userId="@c.User?.UserId" class="text-decoration-none">Use this Coupon</a></p>
+            <p>Posted by: @c.User?.UserName</p>
+        </div>
+    }

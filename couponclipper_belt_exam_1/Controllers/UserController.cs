@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Filters;
+using couponclipper_belt_exam_1.Models;
 
 
-namespace weddingplanner.Models;
+namespace couponclipper_belt_exam_1.Controllers;
 
 public class UserController : Controller
 {
@@ -23,12 +23,12 @@ public class UserController : Controller
     {
         return View();
     }
-
+    
     // Registration
     [HttpPost("users/create")]   
     public IActionResult CreateUser(User newUser)
-    {
-        if(!ModelState.IsValid)
+    {        
+        if(!ModelState.IsValid)        
         {
             return View("Index");
         } else {
@@ -36,41 +36,39 @@ public class UserController : Controller
             newUser.Password = Hasher.HashPassword(newUser, newUser.Password);
             _db.Add(newUser);
             _db.SaveChanges();
-            HttpContext.Session.SetInt32("loggedUserId", newUser.UserId);
-            HttpContext.Session.SetString("UserName", newUser.FirstName);
             System.Console.WriteLine(newUser);
-            return RedirectToAction("Index", "Wedding");
-        }
+            return RedirectToAction("Index", "Coupon");
+        }   
     }
+
 
     // Login 
     [HttpPost("/users/login")]
     public IActionResult Login(LoginUser userSubmission)
 {    
-    if(!ModelState.IsValid)
-    {
+    if(!ModelState.IsValid)    
+    {        
         return View("Index");
     } else {
         User? userInDb = _db.Users.FirstOrDefault(u => u.Email == userSubmission.EmailLogin);
-        if(userInDb == null)
+        if(userInDb == null)        
         {
-            ModelState.AddModelError("EmailLogin", "Invalid Email/Password");
-            return View("Index");
+            ModelState.AddModelError("EmailLogin", "Invalid Email/Password");            
+            return View("Index");        
         }
         PasswordHasher<LoginUser> hasher = new PasswordHasher<LoginUser>();
         var result = hasher.VerifyHashedPassword(userSubmission, userInDb.Password, userSubmission.PasswordLogin); // Result can be compared to 0 for failure
         if(result == 0)
-        {
+        {            
             ModelState.AddModelError("EmailLogin", "Invalid credentials");
             return View("Index");
         } 
             HttpContext.Session.SetInt32("loggedUserId", userInDb.UserId);
-            HttpContext.Session.SetString("UserName", userInDb.FirstName);
+            HttpContext.Session.SetString("UserName", userInDb.UserName);
             HttpContext.Session.SetString("Email", userInDb.Email);
-            return RedirectToAction("Index", "Wedding");
+            return RedirectToAction("Index", "Coupon");
     }
 }
-
     [HttpPost("/user/logout")]
     public IActionResult Logout()
     {
@@ -82,17 +80,5 @@ public class UserController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
-}
-
-public class SessionCheckAttribute : ActionFilterAttribute
-{
-    public override void OnActionExecuting(ActionExecutingContext context)
-    {
-        int? userId = context.HttpContext.Session.GetInt32("loggedUserId");
-        if(userId == null)
-        {
-            context.Result = new RedirectToActionResult("Index", "User", null);
-        }
     }
 }

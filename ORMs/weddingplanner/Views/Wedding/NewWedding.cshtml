@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "New Wedding Page";
+}
+
+@model Wedding
+
+<div class="d-flex justify-content-between p-2 my-2">
+    <h2>Welcome @Context.Session.GetString("UserName")!</h2>
+    <div class="d-flex justify-content-between w-25">
+        <a asp-action="Index" asp-asp-controller="Wedding" class="">Home</a> |
+        <a asp-action="NewWedding" asp-controller="Wedding" class="text-muted">Plan a Wedding</a> |
+        <a asp-action="Logout" asp-controller="User" class="text-danger">Logout</a>
+    </div>
+</div>
+<hr/>
+
+        <form asp-action="CreateWedding" asp-controller="Wedding" method="post" class="card card-border-2 d-flex flex-column p-4">
+            <div class="d-flex">
+                <label asp-for="WeddingOne" class="form-label align-content-end  align-self-center w-25 p-2"></label>
+                <input asp-for="WeddingOne" class="form-control justify-content-start align-self-center bg-light" />
+                <span asp-validation-for="WeddingOne" class="text-danger font-weight-bold flex-fill"></span>
+            </div>
+            <div class="d-flex">
+                <label asp-for="WeddingTwo" class="form-label align-content-end  align-self-center w-25 p-2"></label>
+                <input asp-for="WeddingTwo" class="form-control justify-content-start align-self-center bg-light" />
+                <span asp-validation-for="WeddingTwo" class="text-danger font-weight-bold flex-fill"></span>
+            </div>
+            
+            <div class="d-flex">
+                <label asp-for="Date" class="form-label align-content-end  align-self-center w-25 p-2"></label>
+                <input asp-for="Date" type="Date"  class="form-control justify-content-start align-self-center bg-light" />
+                <span asp-validation-for="Date" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="d-flex">
+                <label asp-for="Address" class="form-label align-content-end  align-self-center w-25 p-2"></label>
+                <input asp-for="Address" class="form-control justify-content-start align-self-center bg-light" />
+                <span asp-validation-for="Address" class="text-danger font-weight-bold flex-fill"></span>
+            </div>
+            <div>
+                <button type="Submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>

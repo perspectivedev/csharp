@@ -1,19 +1,15 @@
 #pragma warning disable CS8618
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace weddingplanner.Models;
+namespace couponclipper_belt_exam_1.Models;
 public class User
 {
     [Key]
     public int UserId { get; set; }
-    [Required(ErrorMessage = "First Name is required.")]
-    [Display(Name ="First Name")]
-    [MinLength(3, ErrorMessage="First Name must be at least three characters long.")]
-    public string FirstName { get; set; }
-    [Required(ErrorMessage = "Last Name is required.")]
-    [Display(Name ="Last Name")]
-    [MinLength(3, ErrorMessage="Last Name must be at least three characters long.")]
-    public string LastName { get; set; }
+    [Required(ErrorMessage = "Username is required.")]
+    [Display(Name ="Username")]
+    [MinLength(3, ErrorMessage="Username must be at least three characters long.")]
+    public string UserName { get; set; }
     [Required]
     [DataType(DataType.EmailAddress)]
     [UniqueEmail]
@@ -26,18 +22,16 @@ public class User
     
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
-    // This does not need to be moved to the bottom
-    // But it helps make it clear what is being mapped and what is not
     [NotMapped]
     [Compare("Password")]
     [DataType(DataType.Password)]
-    // There is also a built-in attribute for comparing two fields we can use!
     public string Confirm_Password { get; set; }
-    public List<WeddingRsvp> Weddings { get; set; } = new List<WeddingRsvp>();
+    public int CouponId { get; set; }
+    public List<CouponAssociation> CouponTracker { get; set; } = new List<CouponAssociation>();
     
 public override string ToString()
 {
-    return String.Format("FN -> {0}, LN -> {1}, En -> {2}, Cr -> {3}, Up -> {4}", FirstName, LastName, Email, CreatedAt.ToString(), UpdatedAt.ToString());
+    return String.Format("UN -> {0}, En -> {1}, Cr -> {2}, Up -> {3}", UserName, Email, CreatedAt.ToString(), UpdatedAt.ToString());
 }
 }
 

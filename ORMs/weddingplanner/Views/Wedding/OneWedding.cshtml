@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "One Wedding Page";
+}
+
+@model Wedding
+
+<div class="d-flex justify-content-between p-2 my-2">
+    <h2>Welcome @Context.Session.GetString("UserName")!</h2>
+    <div class="d-flex justify-content-between w-25">
+        <a asp-action="Index" asp-asp-controller="Wedding" class="">Home</a> |
+        <a asp-action="NewWedding" asp-controller="Wedding" class="text-muted">Plan a Wedding</a> |
+        <a asp-action="Logout" asp-controller="User" class="text-danger">Logout</a>
+    </div>
+</div>
+<hr/>
+<h1>@Model.WeddingOne & @Model.WeddingTwo's wedding</h1>
+<p>@Model.Date.ToString("dddd, dd MMMM yyyy")</p>
+    <label for="">Guests:</label>
+<div class="d-flex flex-column flex-fit card p-2">
+    @foreach(WeddingRsvp wr in Model.Guests)
+    {
+        <p class="align-items-center">@wr.User?.FirstName @wr.User?.LastName</p>
+    }
+</div>
+

@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between p-2 my-2">
+    <h2>Welcome @Context.Session.GetString("UserName")!</h2>
+    <div class="d-flex justify-content-between w-25">
+        <a asp-action="Index" asp-asp-controller="Coupon" class="">Add Coupon</a> |
+        <a asp-action="OneUser" asp-controller="Coupon" asp-for-userId="UserId" class="text-info">Account Info</a> |
+                <form asp-action="Logout" asp-controller="User" method="post" class="text-danger">
+            <button type="submit" class="btn btn-outline-danger">Logout</button>
+        </form>
+    </div>
+</div>
+<hr/>
+@await Html.PartialAsync("_CouponForm")
